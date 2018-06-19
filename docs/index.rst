@@ -46,6 +46,7 @@ Inspired by `requests`_ for its simplicity and powered by `lxml`_ for its speed.
       vi              Vietnamese
       uk              Ukrainian
       sw              Swahili
+      jp              Japanese
 
 A Glance:
 ---------
