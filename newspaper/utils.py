@@ -382,7 +382,7 @@ def print_available_languages():
         'uk': 'Ukrainian',
         'hi': 'Hindi',
         'sw': 'Swahili',
-        'jp': 'Japanese'
+        'ja': 'Japanese'
     }
 
     codes = get_available_languages()

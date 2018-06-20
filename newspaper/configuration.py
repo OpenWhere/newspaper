@@ -114,7 +114,7 @@ class Configuration(object):
         # There is a persian parser https://github.com/sobhe/hazm, but nltk is likely sufficient
         elif language == 'ar' or language == 'fa':
             return StopWordsArabic
-        elif language == 'jp':
+        elif language == 'ja':
             return StopWordsJapanese
         return StopWords
 

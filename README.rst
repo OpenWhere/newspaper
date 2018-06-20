@@ -217,7 +217,7 @@ Features
       tr              Turkish
       el              Greek
       uk              Ukrainian
-      jp              Japanese
+      ja              Japanese
 
 
 Get it now
