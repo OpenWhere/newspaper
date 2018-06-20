@@ -186,8 +186,8 @@ class StopWordsHindi(StopWords):
 class StopWordsJapanese(StopWords):
     """Japanese segmentation
     """
-    def __init__(self, language='jp'):
-        super(StopWordsJapanese, self).__init__(language='jp')
+    def __init__(self, language='ja'):
+        super(StopWordsJapanese, self).__init__(language='ja')
 
     def candidate_words(self, stripped_input):
         import tinysegmenter
