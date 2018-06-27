@@ -10,6 +10,7 @@ import os
 import glob
 
 import requests
+from langdetect import detect
 
 from . import images
 from . import network
@@ -208,8 +209,15 @@ class Article(object):
         self.set_meta_language(meta_lang)
 
         if self.config.use_meta_language:
-            self.extractor.update_language(self.meta_lang)
-            output_formatter.update_language(self.meta_lang)
+            # If there is no meta language provide, but detect_lang_from_title is true, and there is title text, try to detect language
+            if self.meta_lang == '' and self.config.detect_lang_from_title and self.title != '':
+                detected_lang = detect(self.title)
+                self.extractor.update_language(detected_lang)
+                output_formatter.update_language(detected_lang)
+
+            else:
+                self.extractor.update_language(self.meta_lang)
+                output_formatter.update_language(self.meta_lang)
 
         meta_favicon = self.extractor.get_favicon(self.clean_doc)
         self.set_meta_favicon(meta_favicon)
