@@ -209,15 +209,16 @@ class Article(object):
         self.set_meta_language(meta_lang)
 
         if self.config.use_meta_language:
-            # If there is no meta language provide, but detect_lang_from_title is true, and there is title text, try to detect language
-            if self.meta_lang == '' and self.config.detect_lang_from_title and self.title != '':
-                detected_lang = detect(self.title)
-                self.extractor.update_language(detected_lang)
-                output_formatter.update_language(detected_lang)
+            self.extractor.update_language(self.meta_lang)
+            output_formatter.update_language(self.meta_lang)
 
-            else:
-                self.extractor.update_language(self.meta_lang)
-                output_formatter.update_language(self.meta_lang)
+            # If there is no meta language provide, but detect_lang_from_title is true, and there is title text, try to detect language
+            if not self.meta_lang and self.config.detect_lang_from_title and self.title:
+                detected_lang = detect(self.title)
+                # Make sure the detected language is an available language, or don't use it
+                if detected_lang in get_available_languages():
+                    self.extractor.update_language(detected_lang)
+                    output_formatter.update_language(detected_lang)
 
         meta_favicon = self.extractor.get_favicon(self.clean_doc)
         self.set_meta_favicon(meta_favicon)
